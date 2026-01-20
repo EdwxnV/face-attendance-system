@@ -1,0 +1,54 @@
+.students-container {
+  padding: 40px;
+  color: white;
+  min-height: 100vh;
+}
+
+.students-title {
+  font-size: 36px;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #21add3, #233eb8);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.students-table {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.students-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  padding: 14px 10px;
+  border-bottom: 1px solid #333;
+  font-weight: 600;
+  color: #21add3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.student-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  padding: 14px 10px;
+  border-bottom: 1px solid #1d1d1d;
+  transition: 0.2s;
+}
+
+.student-row:hover {
+  background: #1a1a1a;
+}
+
+.no-data {
+  padding: 20px;
+  text-align: center;
+  color: #aaa;
+}
