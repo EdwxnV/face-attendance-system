@@ -1,5 +1,5 @@
-import LeftPanel from "../components/LeftPanel"
-import RightPanel from "../components/RightPanel"
+import LeftPanel from "../components/LeftPanel";
+import RightPanel from "../components/RightPanel";
 
 export default function Signup() {
   return (
@@ -7,5 +7,5 @@ export default function Signup() {
       <LeftPanel />
       <RightPanel />
     </div>
-  )
+  );
 }

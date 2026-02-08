@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-// Firebase
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,78 +11,66 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin() {
-    if (!email || !password) {
-      alert("Please enter email and password");
-      return;
-    }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      setLoading(true);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      const uid = result.user.uid;
 
-      // 1. Authenticate user
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // 2. Fetch Firestore role
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (!userSnap.exists()) {
-        alert("User profile not found in database.");
+      // Check both student and teacher collections
+      let userDoc = await getDoc(doc(db, "teachers", uid));
+      if (userDoc.exists()) {
+        navigate("/teacher/home");
         return;
       }
 
-      const { role } = userSnap.data();
-
-      // 3. Redirect by role
-      if (role === "teacher") {
-        navigate("/teacher/home");
-      } else {
+      userDoc = await getDoc(doc(db, "students", uid));
+      if (userDoc.exists()) {
         navigate("/student/home");
+        return;
       }
 
-    } catch (error) {
-      if (error.code === "auth/wrong-password") {
-        alert("Incorrect password");
-      } else if (error.code === "auth/user-not-found") {
-        alert("No account found with this email");
-      } else {
-        alert(error.message);
-      }
-    } finally {
-      setLoading(false);
+      alert("User profile not found.");
+    } catch (err) {
+      alert(err.message);
     }
-  }
+
+    setLoading(false);
+  };
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Log In</h2>
-        <p className="subtitle">Access your account</p>
+        <h2>Access your account</h2>
 
-        <input
-          className="login-input"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <form onSubmit={handleLogin}>
+          <input
+            className="login-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <input
-          className="login-input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            className="login-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <button className="login-btn" onClick={handleLogin} disabled={loading}>
-          {loading ? "Logging In..." : "Log In"}
-        </button>
+          <button className="login-btn" disabled={loading}>
+            {loading ? "Logging In..." : "Log In"}
+          </button>
+        </form>
 
         <p className="login-bottom">
-          Don’t have an account? <Link to="/">Sign Up</Link>
+          Don’t have an account? <a href="/">Sign Up</a>
         </p>
       </div>
     </div>

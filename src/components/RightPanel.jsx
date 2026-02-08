@@ -1,106 +1,61 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import SocialButton from "./SocialButton";
+import "../styles/signup.css";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../firebase";
-
-export default function RightPanel() {
-  const [show, setShow] = useState(false);
-  const navigate = useNavigate();
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function handleSignup() {
-    if (!email || !password || !role) {
-      alert("Please fill all required fields");
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      await setDoc(doc(db, "users", user.uid), {
-        firstName,
-        lastName,
-        email,
-        role,
-        createdAt: new Date(),
-      });
-
-      if (role === "teacher") navigate("/teacher/home");
-      else navigate("/student/home");
-
-    } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        alert("This email is already registered. Please log in instead.");
-      } else {
-        alert(error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }
+export default function RightPanel({ onSignup }) {
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="right-panel">
       <div className="right-content">
         <h2>Sign Up Account</h2>
-        <p className="subtitle">Enter your personal data to create your account</p>
+        <p className="subtitle">
+          Enter your personal data to create your account
+        </p>
 
-        {/* UPDATED SOCIAL BUTTONS */}
+        {/* SOCIAL BUTTONS */}
         <div className="social-buttons">
-          <SocialButton label="Github" />
-          <SocialButton label="Google" />
+          <button type="button" className="social">Github</button>
+          <button type="button" className="social">Google</button>
         </div>
 
+        {/* DIVIDER */}
         <div className="divider">
-          <span></span><p>or</p><span></span>
+          <span></span>
+          <p>or</p>
+          <span></span>
         </div>
 
-        <div className="row">
-          <input placeholder="eg. John" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-          <input placeholder="eg. Francess" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-        </div>
+        {/* FORM */}
+        <form onSubmit={onSignup}>
+          <div className="row">
+            <input type="text" placeholder="First Name" required />
+            <input type="text" placeholder="Last Name" required />
+          </div>
 
-        <input
-          type="email"
-          placeholder="eg.johnfran@gmail.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input type="email" placeholder="Email" required />
 
-        <select className="role-select" value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="" disabled>Select your role</option>
-          <option value="student">Student</option>
-          <option value="teacher">Teacher</option>
-        </select>
+          <div className="password-box">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              required
+            />
+            <span onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
 
-        <div className="password-box">
-          <input
-            type={show ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span onClick={() => setShow(!show)}>👁</span>
-        </div>
+          <select className="role-select" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
 
-        <button className="submit-btn" onClick={handleSignup} disabled={loading}>
-          {loading ? "Creating Account..." : "Sign Up"}
-        </button>
+          <button className="submit-btn">Sign Up</button>
+        </form>
 
         <p className="login-text">
-          Already have an account? <Link to="/login">Log In</Link>
+          Already have an account? <a href="/login">Login</a>
         </p>
       </div>
     </div>
