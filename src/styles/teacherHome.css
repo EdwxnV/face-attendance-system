@@ -1,0 +1,65 @@
+.teacher-home {
+  padding: 40px;
+  color: white;
+}
+
+.teacher-home-title {
+  font-size: 38px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #21add3, #233eb8);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 40px;
+}
+
+/* SUBJECT WIDGET */
+.subject-widget {
+  width: 420px;
+  background: #0d0d0d;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #222;
+  box-shadow: 0 0 20px rgba(33, 173, 211, 0.15);
+}
+
+.subject-widget h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #21add3;
+}
+
+/* Inputs */
+.subject-input,
+.subject-select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border: none;
+  border-radius: 10px;
+  background: #1a1a1a;
+  color: white;
+  font-size: 15px;
+}
+
+.subject-input::placeholder {
+  color: #aaa;
+}
+
+/* Add Button */
+.subject-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #21add3, #233eb8);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+  transition: 0.2s;
+}
+
+.subject-btn:hover {
+  opacity: 0.85;
+}

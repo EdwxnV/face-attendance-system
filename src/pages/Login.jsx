@@ -16,23 +16,28 @@ export default function Login() {
     setLoading(true);
 
     try {
+      // 1. Sign in with Firebase Auth
       const result = await signInWithEmailAndPassword(auth, email, password);
       const uid = result.user.uid;
 
-      // Check both student and teacher collections
-      let userDoc = await getDoc(doc(db, "teachers", uid));
-      if (userDoc.exists()) {
+      // 2. Read the user profile from Firestore (NEW: unified "users" collection)
+      const userDoc = await getDoc(doc(db, "users", uid));
+
+      if (!userDoc.exists()) {
+        alert("User profile not found in Firestore.");
+        setLoading(false);
+        return;
+      }
+
+      const data = userDoc.data();
+      const role = data.role;
+
+      // 3. Redirect based on role
+      if (role === "teacher") {
         navigate("/teacher/home");
-        return;
-      }
-
-      userDoc = await getDoc(doc(db, "students", uid));
-      if (userDoc.exists()) {
+      } else {
         navigate("/student/home");
-        return;
       }
-
-      alert("User profile not found.");
     } catch (err) {
       alert(err.message);
     }

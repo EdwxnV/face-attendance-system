@@ -1,0 +1,94 @@
+.attendance-page {
+  padding: 40px;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.attendance-title {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #21add3, #233eb8);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 30px;
+}
+
+/* Dropdown */
+.dropdown-box {
+  margin-bottom: 25px;
+}
+
+.student-dropdown {
+  width: 320px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.student-dropdown:hover {
+  border-color: #21add3;
+}
+
+.student-dropdown:focus {
+  border-color: #21add3;
+  outline: none;
+}
+
+/* Attendance Table */
+.attendance-table {
+  margin-top: 20px;
+}
+
+.attendance-table table {
+  width: 85%;
+  border-collapse: collapse;
+  background: #101010;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(33, 173, 211, 0.15);
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.attendance-table th {
+  background: #141414;
+  color: #21add3;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.attendance-table tr:hover {
+  background: rgba(33, 173, 211, 0.07);
+  cursor: pointer;
+}
+
+.attendance-table td {
+  color: #dcdcdc;
+  font-size: 15px;
+}
+
+/* If no attendance data */
+.no-data {
+  margin-top: 30px;
+  color: #aaa;
+  font-size: 18px;
+}
+
+.attendance-table table td:nth-child(6) {
+  font-weight: 700;
+  color: #21add3;
+}
+
+.attendance-table table tr:hover td {
+  color: white;
+}

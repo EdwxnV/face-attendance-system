@@ -1,7 +1,9 @@
 .students-container {
-  padding: 40px;
+  padding: 40px 40px 40px 40px; /* remove top padding */
+  padding-top: 20px; /* safe spacing below navbar */
   color: white;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px); /* prevent pushing layout downward */
+  box-sizing: border-box;
 }
 
 .students-title {

@@ -28,14 +28,15 @@ export default function RightPanel({ onSignup }) {
         {/* FORM */}
         <form onSubmit={onSignup}>
           <div className="row">
-            <input type="text" placeholder="First Name" required />
-            <input type="text" placeholder="Last Name" required />
+            <input name="firstName" type="text" placeholder="First Name" required />
+            <input name="lastName" type="text" placeholder="Last Name" required />
           </div>
 
-          <input type="email" placeholder="Email" required />
+          <input name="email" type="email" placeholder="Email" required />
 
           <div className="password-box">
             <input
+              name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               required
@@ -45,7 +46,7 @@ export default function RightPanel({ onSignup }) {
             </span>
           </div>
 
-          <select className="role-select" required>
+          <select name="role" className="role-select" required>
             <option value="">Select Role</option>
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
@@ -53,6 +54,7 @@ export default function RightPanel({ onSignup }) {
 
           <button className="submit-btn">Sign Up</button>
         </form>
+
 
         <p className="login-text">
           Already have an account? <a href="/login">Login</a>
