@@ -15,11 +15,11 @@ import StudentLayout from "./layouts/StudentLayout";
 import TeacherAttendance from "./pages/TeacherAttendance";
 import TeacherStudents from "./pages/TeacherStudents";
 import TeacherManual from "./pages/TeacherManual";
+import StudentAttendance from "./pages/StudentAttendance";
+
 
 // Student temporary pages
-function StudentAttendance() {
-  return <h1 style={{ color: "white" }}>Student Attendance Page</h1>;
-}
+
 function StudentAbsence() {
   return <h1 style={{ color: "white" }}>Absence Details Page</h1>;
 }

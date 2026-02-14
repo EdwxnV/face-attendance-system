@@ -1,0 +1,59 @@
+.student-attendance-container {
+  padding: 40px;
+  color: white;
+}
+
+.student-attendance-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #21add3, #233eb8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.student-attendance-table {
+  width: 100%;
+  max-width: 950px;
+  margin: auto;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(33, 173, 211, 0.1);
+}
+
+.student-attendance-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-attendance-table th,
+.student-attendance-table td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.student-attendance-table th {
+  background: #141414;
+  color: #21add3;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.student-attendance-table tr:hover {
+  background: rgba(33, 173, 211, 0.07);
+}
+
+.student-attendance-table td {
+  color: #dcdcdc;
+  font-size: 15px;
+}
+
+.no-data {
+  text-align: center;
+  color: #aaa;
+  font-size: 18px;
+}
