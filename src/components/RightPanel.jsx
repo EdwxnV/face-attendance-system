@@ -6,33 +6,32 @@ export default function RightPanel({ onSignup }) {
 
   return (
     <div className="right-panel">
-      <div className="right-content">
-        <h2>Sign Up Account</h2>
+      <div className="right-card">
+
+        <h2>Create Your Account</h2>
         <p className="subtitle">
-          Enter your personal data to create your account
+          Enter your personal details to begin
         </p>
 
-        {/* SOCIAL BUTTONS */}
+        {/* Social Buttons */}
         <div className="social-buttons">
           <button type="button" className="social">Github</button>
           <button type="button" className="social">Google</button>
         </div>
 
-        {/* DIVIDER */}
         <div className="divider">
           <span></span>
           <p>or</p>
           <span></span>
         </div>
 
-        {/* FORM */}
         <form onSubmit={onSignup}>
           <div className="row">
             <input name="firstName" type="text" placeholder="First Name" required />
             <input name="lastName" type="text" placeholder="Last Name" required />
           </div>
 
-          <input name="email" type="email" placeholder="Email" required />
+          <input name="email" type="email" placeholder="Email Address" required />
 
           <div className="password-box">
             <input
@@ -55,10 +54,10 @@ export default function RightPanel({ onSignup }) {
           <button className="submit-btn">Sign Up</button>
         </form>
 
-
         <p className="login-text">
           Already have an account? <a href="/login">Login</a>
         </p>
+
       </div>
     </div>
   );

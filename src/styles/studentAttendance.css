@@ -19,8 +19,10 @@
   background: #111;
   border: 1px solid #222;
   border-radius: 14px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   box-shadow: 0 0 20px rgba(33, 173, 211, 0.1);
+  min-width: 700px;
 }
 
 .student-attendance-table table {

@@ -48,8 +48,10 @@
   border-collapse: collapse;
   background: #101010;
   border-radius: 14px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   box-shadow: 0 0 20px rgba(33, 173, 211, 0.15);
+  min-width: 700px;
 }
 
 .attendance-table th,
